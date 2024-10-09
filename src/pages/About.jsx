@@ -21,7 +21,7 @@ const About = () => {
           </p>
 
           <p className="font-heebo text-sm md:text-base lg:text-lg text-justify leading-relaxed md:leading-relaxed lg:leading-loose">
-            Formirani smo u novembru 2023. godine s ciljem da podignemo svest o izazovima sa kojima se suočavaju studenti sa invaliditetom i da se borimo za pristupačnost našeg fakulteta, kao i univerziteta. Ovo je od suštinske važnosti jer omogućava svim studentima, bez obzira na njihove fizičke ili mentalne sposobnosti, ravnopravan pristup obrazovanju i punom učešću u akademskom životu. Pristupačnost je ključna za stvaranje inkluzivnog društva u kojem svi imaju jednake šanse za uspeh i razvoj, bez diskriminacije i prepreka.
+            Formirani smo u novembru 2023. godine s ciljem da podignemo svest o izazovima sa kojima se suočavaju studenti sa invaliditetom i da se borimo za pristupačnost fakulteta koji pohađamo, kao i univerziteta. Ovo je od istinske važnosti jer omogućava svim studentima, bez obzira na njihove fizičke ili mentalne sposobnosti, ravnopravan pristup obrazovanju i punom uživanju akademskog života. Pristupačnost je ključna za stvaranje inkluzivnog okruženja u kojem svi imaju jednake prilike za uspeh i razvoj, bez diskriminacije i prepreka.
           </p>
         </div>
 

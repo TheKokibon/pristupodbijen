@@ -30,7 +30,11 @@ const Footer = () => {
 
       {/* Bottom Center Section: Copyright */}
       <div className="mt-6 text-center">
-        <p className="text-sm md:text-md font-heebo">&copy; 2024 Pokret za inkluzivno studiranje. Sva prava zadržana.</p>
+        <div className='flex flex-row text-center justify-center gap-2 items-center'>
+            <p>&copy; </p>
+             <p className="text-sm md:text-md font-heebo"> 2024 Pokret za inkluzivno studiranje. Sva prava zadržana.</p>
+
+        </div>
       </div>
     </div>
   );

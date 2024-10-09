@@ -16,6 +16,7 @@ module.exports = {
         sansCondensed: ['"Open Sans Condensed"', 'sans-serif'],
         taviraj: ['"Taviraj"', 'serif'],
         heebo: ['"Heebo"', 'sans-serif'],
+        openDyslexic : ['"OpenDyslexic"', 'sans-serif'],
       },
       keyframes: {
         fadeIn: {
