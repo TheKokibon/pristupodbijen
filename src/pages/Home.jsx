@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useRef } from "react";
 import znak from "../assets/pocetnastranicaZnak.png";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import euzatebe from "../assets/euzatebelogo.png";
 import boslogo from "../assets/boslogo1.png";
 import pokret from "../assets/pokretzainkluzivnostudiranje.png";
-import CountUp from "react-countup";
-
+import heroSekcija from "../assets/audio/heroSekcija.mp3";
+import Zasto from "../assets/audio/Zasto.mp3";
+import prijateljiPrograma from "../assets/audio/PrijateljiPrograma.mp3"
 
 import { Equal, ChevronLeft, ChevronRight } from "lucide-react";
 const Home = () => {
+  const audioRef1 = useRef(null);
+  const audioRef2 = useRef(null);
+  const audioRef3 = useRef(null);
+
+  const playAudio1 = () => {
+    if (audioRef1.current) {
+      audioRef1.current.play(); // Play the audio file when button is clicked
+    }
+  };
+
+  const playAudio2 = () => {
+    if (audioRef2.current) {
+      audioRef2.current.play(); // Play the audio file when button is clicked
+    }
+  };
+
+  const playAudio3 = () => {
+    if (audioRef3.current) {
+      audioRef3.current.play(); // Play the audio file when button is clicked
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -26,9 +49,20 @@ const Home = () => {
           <h2 className="font-taviraj text-2xl lg:text-3xl mt-6">
             Izložba o pristupačnosti i inkluziji u obrazovnom sistemu
           </h2>
-          <button className="bg-poppy text-white mt-4 self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out">
-            Pogledaj izložbu
-          </button>
+          <div className="flex flex-row gap-10 justify-center">
+            <button className="bg-poppy text-white mt-4 self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out">
+              Pogledaj izložbu
+            </button>
+            <button
+              onClick={playAudio1}
+              className="bg-poppy text-white mt-4 self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out"
+            >
+              🔊 Pročitaj
+            </button>
+          </div>
+
+          {/* Audio Element */}
+          <audio ref={audioRef1} src={heroSekcija} />
         </div>
 
         <div className="w-full md:w-1/3 flex justify-center animate-slideRight">
@@ -41,40 +75,20 @@ const Home = () => {
       </div>
 
       <hr className="w-1/2 mx-auto border-black border-t-2 rounded-full my-4" />
-
-      <div className="w-full bg-platinum py-12">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 font-sansCondensed">
-          Naš uticaj u brojkama
-        </h2>
-
-        <div className="flex flex-wrap justify-center items-center gap-8">
-          {/* Broj izložbi */}
-          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg border-4 border-poppy">
-          <h3 className="text-6xl font-bold text-poppy font-taviraj"> <CountUp end={1} duration={5} /></h3>
-            <p className="text-xl font-bold mt-4 font-taviraj">Održanih izložbi</p>
-          </div>
-
-          {/* Broj pratilaca */}
-          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg border-4 border-poppy">
-            <h3 className="text-6xl font-bold text-poppy font-taviraj"> <CountUp end={200} duration={5} />+</h3>
-            <p className="text-xl font-bold mt-4 font-taviraj">
-              Pratilaca na društvenim mrežama
-            </p>
-          </div>
-
-          {/* Broj volontera */}
-          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg border-4 border-poppy">
-            <h3 className="text-6xl font-bold text-poppy"><CountUp end={20} duration={5} />+</h3>
-            <p className="text-xl font-bold mt-4">Volontera</p>
-          </div>
-        </div>
-      </div>
-
-      <hr className="w-1/2 mx-auto border-black border-t-2 rounded-full my-4" />
       <div className="flex flex-col justify-center items-center p-4">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-sansCondensed text-center mt-2 md:mt-4 lg:mt-6 p-4">
-          Zašto?
-        </h1>
+        <div className="flex flex-col justify-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-sansCondensed text-center mt-2 md:mt-4 lg:mt-6 p-4">
+            Zašto?
+          </h1>
+          <button
+            onClick={playAudio2}
+            className="bg-poppy text-white mt-4 mx-auto self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out"
+          >
+            🔊 Pročitaj
+          </button>
+          <audio ref={audioRef2} src={Zasto}></audio>
+        </div>
+
         <div className="flex flex-row justify-center flex-wrap gap-4 m-2">
           <div className="w-64 h-44 bg-poppy rounded-lg flex flex-col justify-center items-center text-white font-bold mx-6">
             <ChevronLeft className="size-32" />
@@ -151,9 +165,19 @@ const Home = () => {
 
       {/* Prijatelji programa Section */}
       <div>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-sansCondensed text-center mt-2 md:mt-4 lg:mt-6 p-4">
-          Prijatelji programa
-        </h1>
+        <div className="flex flex-col justify-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-sansCondensed text-center mt-2 md:mt-4 lg:mt-6 p-4">
+            Prijatelji programa
+          </h1>
+          <button
+            onClick={playAudio3}
+            className="bg-poppy text-white mt-4 mx-auto self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out"
+          >
+            🔊 Pročitaj
+          </button>
+          <audio ref={audioRef3} src={prijateljiPrograma}></audio>
+        </div>
+
         <div className="flex flex-row flex-wrap justify-evenly items-center m-4 gap-4">
           <img src={boslogo} alt="BOS Logo" className="w-64 h-min " />
           <img src={pokret} alt="Pokret Logo" className="w-32 h-32 " />
