@@ -36,7 +36,7 @@ const Contact = () => {
                   className="flex flex-col items-center"
                 >
                   <Instagram className="w-12 h-12 text-blueCrayola group-hover:text-black" />
-                  <h3 className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-taviraj">
+                  <h3 className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-taviraj md:text-lg text-sm">
                     @pokret_inkluzivno_studiranje
                   </h3>
                 </a>
@@ -47,7 +47,7 @@ const Contact = () => {
                   className="flex flex-col items-center"
                 >
                   <Mail className="w-12 h-12 text-blueCrayola group-hover:text-black" />
-                  <h3 className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-taviraj">
+                  <h3 className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-taviraj md:text-lg text-sm">
                     pokretzainkluzivnostudiranjebg@gmail.com
                   </h3>
                 </a>

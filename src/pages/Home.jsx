@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import znak from "../assets/pocetnastranicaZnak.png";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,29 +7,83 @@ import boslogo from "../assets/boslogo1.png";
 import pokret from "../assets/pokretzainkluzivnostudiranje.png";
 import heroSekcija from "../assets/audio/heroSekcija.mp3";
 import Zasto from "../assets/audio/Zasto.mp3";
-import prijateljiPrograma from "../assets/audio/PrijateljiPrograma.mp3"
+import prijateljiPrograma from "../assets/audio/PrijateljiPrograma.mp3";
 
 import { Equal, ChevronLeft, ChevronRight } from "lucide-react";
+
 const Home = () => {
+  // Refs for audios
   const audioRef1 = useRef(null);
   const audioRef2 = useRef(null);
   const audioRef3 = useRef(null);
 
-  const playAudio1 = () => {
-    if (audioRef1.current) {
-      audioRef1.current.play(); // Play the audio file when button is clicked
+  // State to keep track of currently playing audio
+  const [currentAudio, setCurrentAudio] = useState(null);
+
+  // State to manage play/pause status of each button
+  const [isPlaying1, setIsPlaying1] = useState(false);
+  const [isPlaying2, setIsPlaying2] = useState(false);
+  const [isPlaying3, setIsPlaying3] = useState(false);
+
+  // Function to reset all play states
+  const resetAllIsPlaying = () => {
+    setIsPlaying1(false);
+    setIsPlaying2(false);
+    setIsPlaying3(false);
+  };
+
+  // Function to play a specific audio and manage button states
+  const playAudio = (audioRef, setIsPlaying) => {
+    // Pause currently playing audio
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+
+    // Reset all play states before playing the new audio
+    resetAllIsPlaying();
+
+    // Play the new audio
+    audioRef.current.play();
+    setCurrentAudio(audioRef.current);
+
+    // Set the current button state to "playing"
+    setIsPlaying(true);
+
+    // Reset the button state when the audio ends
+    audioRef.current.onended = () => {
+      setIsPlaying(false);
+      setCurrentAudio(null);
+    };
+  };
+
+  const togglePlayAudio1 = () => {
+    if (isPlaying1) {
+      // Pause the audio
+      audioRef1.current.pause();
+      setIsPlaying1(false);
+      setCurrentAudio(null);
+    } else {
+      playAudio(audioRef1, setIsPlaying1);
     }
   };
 
-  const playAudio2 = () => {
-    if (audioRef2.current) {
-      audioRef2.current.play(); // Play the audio file when button is clicked
+  const togglePlayAudio2 = () => {
+    if (isPlaying2) {
+      audioRef2.current.pause();
+      setIsPlaying2(false);
+      setCurrentAudio(null);
+    } else {
+      playAudio(audioRef2, setIsPlaying2);
     }
   };
 
-  const playAudio3 = () => {
-    if (audioRef3.current) {
-      audioRef3.current.play(); // Play the audio file when button is clicked
+  const togglePlayAudio3 = () => {
+    if (isPlaying3) {
+      audioRef3.current.pause();
+      setIsPlaying3(false);
+      setCurrentAudio(null);
+    } else {
+      playAudio(audioRef3, setIsPlaying3);
     }
   };
 
@@ -54,10 +108,10 @@ const Home = () => {
               Pogledaj izložbu
             </button>
             <button
-              onClick={playAudio1}
+              onClick={togglePlayAudio1}
               className="bg-poppy text-white mt-4 self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out"
             >
-              🔊 Pročitaj
+              {isPlaying1 ? "⏸ Pauziraj" : "🔊 Pročitaj"}
             </button>
           </div>
 
@@ -81,10 +135,10 @@ const Home = () => {
             Zašto?
           </h1>
           <button
-            onClick={playAudio2}
+            onClick={togglePlayAudio2}
             className="bg-poppy text-white mt-4 mx-auto self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out"
           >
-            🔊 Pročitaj
+            {isPlaying2 ? "⏸ Pauziraj" : "🔊 Pročitaj"}
           </button>
           <audio ref={audioRef2} src={Zasto}></audio>
         </div>
@@ -102,9 +156,7 @@ const Home = () => {
           </div>
           <div className="w-64 h-44 bg-poppy rounded-lg flex flex-col justify-center items-center text-white font-bold mx-6">
             <ChevronRight className="size-32" />
-            <h3 className="font-taviraj font-bold text-lg">
-              Veća inkluzivnost
-            </h3>
+            <h3 className="font-taviraj font-bold text-lg">Veća inkluzivnost</h3>
           </div>
         </div>
 
@@ -147,7 +199,7 @@ const Home = () => {
 
         {/* Call to action text and button */}
         <div className="text-center mt-12">
-          <p className="text-lg font-bold font-taviraj  text-black">
+          <p className="text-lg font-bold font-taviraj text-black">
             Ukoliko želiš da nam pomogneš u ovoj misiji, klikni na dugme ispod!
           </p>
           <a
@@ -159,8 +211,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Citati razbacani po stranici */}
-
       <hr className="w-1/2 mx-auto border-black border-t-2 rounded-full my-4" />
 
       {/* Prijatelji programa Section */}
@@ -170,10 +220,10 @@ const Home = () => {
             Prijatelji programa
           </h1>
           <button
-            onClick={playAudio3}
+            onClick={togglePlayAudio3}
             className="bg-poppy text-white mt-4 mx-auto self-center md:self-start p-2 rounded-lg font-bold font-sansCondensed hover:bg-red-900 hover:shadow-lg transition duration-300 ease-in-out"
           >
-            🔊 Pročitaj
+            {isPlaying3 ? "⏸ Pauziraj" : "🔊 Pročitaj"}
           </button>
           <audio ref={audioRef3} src={prijateljiPrograma}></audio>
         </div>
